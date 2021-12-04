@@ -1,0 +1,31 @@
+{
+  "files": {
+    "main.css": "/static/css/main.aa452e95.chunk.css",
+    "main.js": "/static/js/main.0505a46e.chunk.js",
+    "main.js.map": "/static/js/main.0505a46e.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.eeaa320a.js",
+    "runtime-main.js.map": "/static/js/runtime-main.eeaa320a.js.map",
+    "static/css/2.429e79c4.chunk.css": "/static/css/2.429e79c4.chunk.css",
+    "static/js/2.52e65d47.chunk.js": "/static/js/2.52e65d47.chunk.js",
+    "static/js/2.52e65d47.chunk.js.map": "/static/js/2.52e65d47.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.68cc8bf35e528e2d8f1255c91ffd9120.js": "/precache-manifest.68cc8bf35e528e2d8f1255c91ffd9120.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/2.429e79c4.chunk.css.map": "/static/css/2.429e79c4.chunk.css.map",
+    "static/css/main.aa452e95.chunk.css.map": "/static/css/main.aa452e95.chunk.css.map",
+    "static/js/2.52e65d47.chunk.js.LICENSE.txt": "/static/js/2.52e65d47.chunk.js.LICENSE.txt",
+    "static/media/Toyota-Display-Regular.ttf": "/static/media/Toyota-Display-Regular.1ac36e54.ttf",
+    "static/media/bootstrap-icons.css": "/static/media/bootstrap-icons.be57951d.woff2",
+    "static/media/boxicons.min.css": "/static/media/boxicons.ffe87d48.ttf",
+    "static/media/style.css": "/static/media/home.c6787750.jpg",
+    "static/media/logo.png": "/static/media/logo.9ab48ce2.png",
+    "static/media/remixicon.css": "/static/media/remixicon.9915fef9.woff2"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.eeaa320a.js",
+    "static/css/2.429e79c4.chunk.css",
+    "static/js/2.52e65d47.chunk.js",
+    "static/css/main.aa452e95.chunk.css",
+    "static/js/main.0505a46e.chunk.js"
+  ]
+}
