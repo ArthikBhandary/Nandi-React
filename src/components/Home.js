@@ -2,6 +2,7 @@ import React from "react";
 
 import AOS from 'aos';
 import main_func from "../assets/js/main";
+import { Link } from 'react-router-dom'
 
 import "../assets/vendor/aos/aos.css";
 import "../assets/vendor/animate.css/animate.min.css";
@@ -24,7 +25,7 @@ class Home extends React.Component {
     render() {
         return (<div className="main">
             <section id="hero" className="d-flex justify-content-center align-items-center">
-                <div className="container position-relative" data-aos="zoom-in" data-aos-delay="{100}">
+                <div className="container position-relative" data-aos="zoom-in" data-aos-delay="{500}">
                     <h1>
                         A GROWTH ORIENTED CORPORATE
                     </h1>

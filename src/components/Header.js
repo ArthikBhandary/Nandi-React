@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from 'react-router-dom'
 import logoImage from "../assets/img/Logo.jpg"
 import "../assets/vendor/animate.css/animate.min.css";
 import "../assets/vendor/bootstrap/css/bootstrap.min.css";
@@ -20,10 +21,14 @@ export default function Header() {
             <nav id="navbar" className="navbar order-last order-lg-0">
                 <ul>
                     <li>
-                        <a className="active" href="index.html">Home</a>
+                        <Link to={"/trainee/home"} className="active">
+                            Home
+                        </Link>
                     </li>
                     <li>
-                        <a href="about.html">About</a>
+                        <Link to={"/trainee/aboutus"} >
+                            About
+                        </Link>
                     </li>
                     <li>
                         <a href="courdetail.html">Courses</a>

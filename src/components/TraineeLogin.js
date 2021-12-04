@@ -20,7 +20,7 @@ export default function TraineeLogin(props) {
                 console.log(res.user)
                 setLoading(false)
             })
-            history.replace("/home")
+            history.push("/trainee")
         } catch  {
             setError("Failed to log in")
             setLoading(false)
