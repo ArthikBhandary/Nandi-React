@@ -38,7 +38,7 @@ export default function Login() {
         console.log(res.user)
         setLoading(false)
       })
-      history.replace("/home")
+      history.replace("/trainee/home")
     } catch {
       setError("Failed to log in")
       setLoading(false)

@@ -12,9 +12,10 @@ export default function RedirectLogin() {
 
   function getRedirectUrl(userId){
       let code = userId.toString().slice(0,2);
+      console.log("HHHH")
       switch (code) {
           case "TR":
-              return "/trainee";
+              return "/trainee/login";
               break;
           case "AD":
               return "/admin";
@@ -26,12 +27,12 @@ export default function RedirectLogin() {
 
   async function handleSubmit(e) {
     e.preventDefault()
-
     try {
       setError("")
       setLoading(true)
       let userId = userIdRef.current.value
       let nextUrl = getRedirectUrl(userId);
+      console.log(nextUrl, "HHHHHH")
       history.push(nextUrl, {userId:userId});
   } catch(err) {
       setError(err)
@@ -57,7 +58,6 @@ export default function RedirectLogin() {
             <Button disabled={loading} className="w-100" type="submit">
               Next
             </Button>
-
           </Form>
         </Card.Body>
       </Card>

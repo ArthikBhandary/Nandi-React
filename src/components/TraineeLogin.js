@@ -20,14 +20,15 @@ export default function TraineeLogin(props) {
                 console.log(res.user)
                 setLoading(false)
             })
-            history.push("/trainee")
+            console.log("Pushing")
+            history.push("/trainee/home")
         } catch  {
             setError("Failed to log in")
             setLoading(false)
         }
 
     }
-
+    console.log("In trainee")
     return (
         <> < Card > <Card.Body>
             <h2 className="text-center mb-4">Trainee Log In</h2>

@@ -4,7 +4,7 @@ import App from "./components/App"
 import { AuthProvider } from "./contexts/AuthContext"
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 import HomePage from "./components/HomePage"
-import PrivateRoute from "./components/PrivateRoute"
+import  { PrivateRoute, TraineePrivateRoute } from "./components/PrivateRoute"
 
 
 import "bootstrap/dist/css/bootstrap.min.css"
@@ -15,7 +15,8 @@ const routes = (
     <Router>
       <AuthProvider>
         <Switch>
-          <PrivateRoute path="/trainee" component={HomePage} />
+          <TraineePrivateRoute path="/trainee/home" component={HomePage} />
+          <TraineePrivateRoute path="/trainee" component={HomePage} />
           <Route path="/" component={App} />
         </Switch>
       </AuthProvider>

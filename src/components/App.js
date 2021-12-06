@@ -4,7 +4,7 @@ import Logo from "./Logo"
 import Dashboard from "./Dashboard"
 import Login from "./Login"
 import TraineeLogin from "./TraineeLogin"
-import AdminLogin from "./TraineeLogin"
+import AdminLogin from "./AdminLogin"
 import RedirectLogin from "./UserRedirect"
 import PrivateRoute from "./PrivateRoute"
 import ForgotPassword from "./ForgotPassword"
@@ -29,10 +29,11 @@ function App() {
             <AuthProvider>
               <Switch>
                 <Route path= "/signup" component={Signup} />
+                <Route path= "/trainee/login" component={TraineeLogin} />
                 <Route path= "/trainee" component={TraineeLogin} />
-                <Route path= "/admin" component={AdminLogin} />
+                <Route path= "/admin" component={ AdminLogin } />
                 <Route path= "/forgot-password" component={ForgotPassword} />
-                <Route exact path= "/" component={RedirectLogin} />
+                <Route path= "/" component={RedirectLogin} />
               </Switch>
             </AuthProvider>
       </div>

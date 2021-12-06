@@ -20,7 +20,7 @@ export default function AdminLogin(props) {
                 console.log(res.user)
                 setLoading(false)
             })
-            history.replace("/home")
+            history.push("/trainee/home")
         } catch  {
             setError("Failed to log in")
             setLoading(false)
