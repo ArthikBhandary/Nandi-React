@@ -29,9 +29,9 @@ function App() {
             <AuthProvider>
               <Switch>
                 <Route path= "/signup" component={Signup} />
-                <Route path= "/trainee/login" component={TraineeLogin} />
+                <Route path= "/login_trainee" component={TraineeLogin} />
                 <Route path= "/trainee" component={TraineeLogin} />
-                <Route path= "/admin" component={ AdminLogin } />
+                <Route path= "/login_admin" component={ AdminLogin } />
                 <Route path= "/forgot-password" component={ForgotPassword} />
                 <Route path= "/" component={RedirectLogin} />
               </Switch>

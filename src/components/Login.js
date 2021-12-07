@@ -18,7 +18,6 @@ export default function Login() {
       setError("")
       setLoading(true)
       await loginGoogle().then((res) => {
-        console.log(res.user)
         setLoading(false)
       })
       history.replace("/")

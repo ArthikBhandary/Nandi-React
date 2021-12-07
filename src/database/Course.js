@@ -11,6 +11,6 @@ export default class Course {
         const docRef = await addDoc(collection(db, "Courses", props));
         return docRef;
     }
-    
+
 
 }

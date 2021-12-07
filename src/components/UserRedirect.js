@@ -4,6 +4,11 @@ import { useAuth } from "../contexts/AuthContext"
 import { Link, useHistory } from "react-router-dom"
 
 export default function RedirectLogin() {
+  // const { currentUser, logout } = useAuth()
+  // if( currentUser ){
+  //   console.log(currentUser);
+  //   logout();
+  // }
   const userIdRef = useRef()
   const passwordRef = useRef()
   const [error, setError] = useState("")
@@ -12,13 +17,12 @@ export default function RedirectLogin() {
 
   function getRedirectUrl(userId){
       let code = userId.toString().slice(0,2);
-      console.log("HHHH")
       switch (code) {
           case "TR":
-              return "/trainee/login";
+              return "/login_trainee";
               break;
           case "AD":
-              return "/admin";
+              return "/login_admin";
               break;
           default:
               throw "Invalid Id";
@@ -32,7 +36,7 @@ export default function RedirectLogin() {
       setLoading(true)
       let userId = userIdRef.current.value
       let nextUrl = getRedirectUrl(userId);
-      console.log(nextUrl, "HHHHHH")
+      console.log(nextUrl, userId)
       history.push(nextUrl, {userId:userId});
   } catch(err) {
       setError(err)

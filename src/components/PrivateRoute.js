@@ -9,7 +9,7 @@ function PrivateRoute({ component: Component, ...rest }) {
     <Route
       {...rest}
       render={props => {
-        return currentUser ? <Component {...props} /> : <Redirect to="/" />
+        return currentUser ? <Component {...props} /> : <Redirect to="/redirect" />
       }}
     ></Route>
   )
@@ -22,7 +22,7 @@ function TraineePrivateRoute({ component: Component, ...rest }) {
     <Route
       {...rest}
       render={props => {
-        return currentUser ? <Component {...props} /> : <Redirect to="/" />
+        return currentUser ? <Component {...props} /> : <Redirect to="/redirect" />
       }}
     ></Route>
   )
