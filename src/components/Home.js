@@ -81,10 +81,10 @@ class Home extends React.Component {
                                     <h3>Vision</h3>
                                     <p>
                                         To be the most admired fastest growing innovative corporate house committed to customers, employees, shareholders &amp; society
-                                        <br/>
-                                        <br/>
+                                        <br />
+                                        <br />
                                         Saju Thomas,
-                                        <br/>Chairman &amp; Managing Director
+                                        <br />Chairman &amp; Managing Director
                                     </p>
                                 </div>
                             </div>
@@ -93,8 +93,8 @@ class Home extends React.Component {
                                     <h3>Mission</h3>
                                     <p>
                                         "Best ownership experience to customers"
-                                        <br/>
-                                        <br/>
+                                        <br />
+                                        <br />
                                         All our activities are focused on this key aspect of feel good factor. Hence Recruitment, Induction Training play Crucial role. At recruitment stage we look for people with traits and positive attitude.
                                     </p>
                                 </div>

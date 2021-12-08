@@ -1519,6 +1519,13 @@ section {
   text-align: left;
 }
 
+.quiz-img-textfield{
+  display: flex;
+  justify-content: center;
+  margin-top: -25px;
+  height: 36px;
+}
+
 @media(max-width:576px) {
     .question {
         width: 100%;

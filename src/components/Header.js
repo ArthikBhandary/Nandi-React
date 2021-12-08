@@ -40,6 +40,16 @@ export default class Header extends React.Component {
                             Courses
                         </Link>
                     </li>
+                    <li>
+                        <Link to={"/trainee/quiz"} >
+                            Quiz
+                        </Link>
+                    </li>
+                    <li>
+                        <Link to={"/trainee/profile"} >
+                            Profile
+                        </Link>
+                    </li>
                 </ul>
                 <i className="bi bi-list mobile-nav-toggle"/>
             </nav>
