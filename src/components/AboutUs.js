@@ -1,5 +1,6 @@
 import React from "react";
-
+import { ref, listAll, getDownloadURL } from "firebase/storage";
+import { storage } from "../firebase";
 import AOS from 'aos';
 import main_func from "../assets/js/main";
 
@@ -13,22 +14,65 @@ import "../assets/vendor/swiper/swiper-bundle.min.css";
 import "../assets/css/style.css";
 import "../assets/css/about_us.css";
 
+class SlideDOM extends React.Component {
+  render() {
+    return (
+      <div className="mySlides-n fade-n">
+          <img src={ this.props.image_url } style={{
+                  width: '100%'
+              }}/>
+          </div>
+    )
+  }
+}
+
 class AboutUs extends React.Component {
     constructor(props) {
         super(props);
         AOS.init();
         this.state = {
             slideIndex: 0,
+            slides: [],
         }
     }
     componentDidMount() {
+        this.getSlideImages();
         this.showSlides();
         main_func();
     }
+
+    getSlideImages(){
+      const slides = []
+      const imageListRef = ref(storage, '/images/about_us_slides');
+      listAll(imageListRef)
+        .then((res) => {
+          let promises = []
+          res.items.forEach((itemRef) => {
+            // All the items under listRef.
+            let promise = getDownloadURL(itemRef)
+              .then((url) => {
+                slides.push(url);
+              })
+            promises.push(promise)
+          });
+          Promise.all(promises).then((val)=>{
+            this.setState({slides : slides});
+          })
+        }).catch((error) => {
+          console.log(error);
+          // Uh-oh, an error occurred!
+        });
+        this.setState({slideIndex : 0, slides : slides});
+        // this.renderSlides();
+    }
+
     showSlides() {
+
         let slides = document.getElementsByClassName("mySlides-n");
-        console.log(this)
-        console.log(this.state)
+        if(slides.length < 1){
+          setTimeout(() => this.showSlides(), 4000);
+          return;
+        }
         let slideIndex = this.state.slideIndex;
         for (let i = 0; i < slides.length; i++) {
             slides[i].style.display = "none";
@@ -55,12 +99,35 @@ class AboutUs extends React.Component {
         for (let i = 0; i < slides.length; i++) {
             slides[i].style.display = "none";
         }
-        console.log(slides)
         slides[slideIndex - 1].style.display = "block";
         this.setState({slideIndex:slideIndex})
 
     }
 
+    renderSlides(){
+      const slides = this.state.slides.map(function(image_url, ind) {
+        return ( <SlideDOM image_url={image_url} key={ ind }/>);
+      });
+      return (
+        <>
+        { slides }
+        </>
+      );
+    }
+    renderSlideShow(){
+      return (
+        <div id="slide-n">
+            <div className="slideshow-container-n">
+              {
+                this.renderSlides()
+              }
+                <a className="prev-n" onClick={ () => this.plusSlides(-1) }>❮</a>
+                <a className="next-n" onClick={ () => this.plusSlides(1) }>❯</a>
+            </div>
+            <br/>
+        </div>
+      );
+    }
     currentSlide(index) {
         let slides = document.getElementsByClassName("mySlides-n");
         if (index > slides.length) {
@@ -91,168 +158,10 @@ class AboutUs extends React.Component {
                 <div className="container" data-aos="fade-up">
                     <div className="row">
                         <div className="col-lg-6 order-1 order-lg-2 text-center" data-aos="fade-left" data-aos-delay={100}>
-                            <div id="slide-n">
-                                <div className="slideshow-container-n">
-                                    <div className="mySlides-n fade-n">
-                                        <img src="./assets/img/about_images/1.png" style={{
-                                                width: '100%'
-                                            }}/>
-                                    </div>
-                                    <div className="mySlides-n fade-n">
-                                        <img src="./assets/img/about_images/2.png" style={{
-                                                width: '100%'
-                                            }}/>
-                                    </div>
-                                    <div className="mySlides-n fade-n">
-                                        <img src="./assets/img/about_images/3.png" style={{
-                                                width: '100%'
-                                            }}/>
-                                    </div>
-                                    <div className="mySlides-n fade-n">
-                                        <img src="./assets/img/about_images/4.png" style={{
-                                                width: '100%'
-                                            }}/>
-                                    </div>
-                                    <div className="mySlides-n fade-n">
-                                        <img src="./assets/img/about_images/5.png" style={{
-                                                width: '100%'
-                                            }}/>
-                                    </div>
-                                    <div className="mySlides-n fade-n">
-                                        <img src="./assets/img/about_images/6.png" style={{
-                                                width: '100%'
-                                            }}/>
-                                    </div>
-                                    <div className="mySlides-n fade-n">
-                                        <img src="./assets/img/about_images/7.png" style={{
-                                                width: '100%'
-                                            }}/>
-                                    </div>
-                                    <div className="mySlides-n fade-n">
-                                        <img src="./assets/img/about_images/8.png" style={{
-                                                width: '100%'
-                                            }}/>
-                                    </div>
-                                    <div className="mySlides-n fade-n">
-                                        <img src="./assets/img/about_images/9.png" style={{
-                                                width: '100%'
-                                            }}/>
-                                    </div>
-                                    <div className="mySlides-n fade-n">
-                                        <img src="./assets/img/about_images/10.png" style={{
-                                                width: '100%'
-                                            }}/>
-                                    </div>
-                                    <div className="mySlides-n fade-n">
-                                        <img src="./assets/img/about_images/11.png" style={{
-                                                width: '100%'
-                                            }}/>
-                                    </div>
-                                    <div className="mySlides-n fade-n">
-                                        <img src="./assets/img/about_images/12.png" style={{
-                                                width: '100%'
-                                            }}/>
-                                    </div>
-                                    <div className="mySlides-n fade-n">
-                                        <img src="./assets/img/about_images/13.png" style={{
-                                                width: '100%'
-                                            }}/>
-                                    </div>
-                                    <div className="mySlides-n fade-n">
-                                        <img src="./assets/img/about_images/14.png" style={{
-                                                width: '100%'
-                                            }}/>
-                                    </div>
-                                    <div className="mySlides-n fade-n">
-                                        <img src="./assets/img/about_images/15.png" style={{
-                                                width: '100%'
-                                            }}/>
-                                    </div>
-                                    <div className="mySlides-n fade-n">
-                                        <img src="./assets/img/about_images/16.png" style={{
-                                                width: '100%'
-                                            }}/>
-                                    </div>
-                                    <div className="mySlides-n fade-n">
-                                        <img src="./assets/img/about_images/17.png" style={{
-                                                width: '100%'
-                                            }}/>
-                                    </div>
-                                    <div className="mySlides-n fade-n">
-                                        <img src="./assets/img/about_images/18.png" style={{
-                                                width: '100%'
-                                            }}/>
-                                    </div>
-                                    <div className="mySlides-n fade-n">
-                                        <img src="./assets/img/about_images/19.png" style={{
-                                                width: '100%'
-                                            }}/>
-                                    </div>
-                                    <div className="mySlides-n fade-n">
-                                        <img src="./assets/img/about_images/20.png" style={{
-                                                width: '100%'
-                                            }}/>
-                                    </div>
-                                    <div className="mySlides-n fade-n">
-                                        <img src="./assets/img/about_images/21.png" style={{
-                                                width: '100%'
-                                            }}/>
-                                    </div>
-                                    <div className="mySlides-n fade-n">
-                                        <img src="./assets/img/about_images/22.png" style={{
-                                                width: '100%'
-                                            }}/>
-                                    </div>
-                                    <div className="mySlides-n fade-n">
-                                        <img src="./assets/img/about_images/23.png" style={{
-                                                width: '100%'
-                                            }}/>
-                                    </div>
-                                    <div className="mySlides-n fade-n">
-                                        <img src="./assets/img/about_images/24.png" style={{
-                                                width: '100%'
-                                            }}/>
-                                    </div>
-                                    <div className="mySlides-n fade-n">
-                                        <img src="./assets/img/about_images/26.png" style={{
-                                                width: '100%'
-                                            }}/>
-                                    </div>
-                                    <div className="mySlides-n fade-n">
-                                        <img src="./assets/img/about_images/27.png" style={{
-                                                width: '100%'
-                                            }}/>
-                                    </div>
-                                    <div className="mySlides-n fade-n">
-                                        <img src="./assets/img/about_images/28.png" style={{
-                                                width: '100%'
-                                            }}/>
-                                    </div>
-                                    <div className="mySlides-n fade-n">
-                                        <img src="./assets/img/about_images/29.png" style={{
-                                                width: '100%'
-                                            }}/>
-                                    </div>
-                                    <div className="mySlides-n fade-n">
-                                        <img src="./assets/img/about_images/30.png" style={{
-                                                width: '100%'
-                                            }}/>
-                                    </div>
-                                    <div className="mySlides-n fade-n">
-                                        <img src="./assets/img/about_images/31.png" style={{
-                                                width: '100%'
-                                            }}/>
-                                    </div>
-                                    <div className="mySlides-n fade-n">
-                                        <img src="./assets/img/about_images/32.png" style={{
-                                                width: '100%'
-                                            }}/>
-                                    </div>
-                                    <a className="prev-n" onClick={ () => this.plusSlides(-1) }>❮</a>
-                                    <a className="next-n" onClick={ () => this.plusSlides(1) }>❯</a>
-                                </div>
-                                <br/>
-                            </div>
+                          {
+                            this.state.slides ?
+                            this.renderSlideShow() : <div></div>
+                          }
                         </div>
                         <div className="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content">
                             <h3>
