@@ -19,26 +19,6 @@ class ProfilePage extends React.Component{
     render() {
       return (
         <div>
-          {/* ======= Header ======= */}
-          <header id="header" className="fixed-top">
-            <div className="container d-flex align-items-center">
-              <h1 className="logo me-auto">
-                <img src="assets/img/Logo.jpg" alt="" className="img-fluid" />
-                <a href="index.html">NANDI TOYOTA</a></h1>
-              {/* Uncomment below if you prefer to use an image logo */}
-              {/* <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>*/}
-              <nav id="navbar" className="navbar order-last order-lg-0">
-                <ul>
-                  <li><a href="index.html">Home</a></li>
-                  <li><a href="about.html">About</a></li>
-                  <li><a className="active" href="courdetail.html">Courses</a></li>
-                </ul>
-                <i className="bi bi-list mobile-nav-toggle" />
-              </nav>{/* .navbar */}
-              <a href="profile.html" className="get-profile-btn">My Profile</a>
-            </div>
-          </header>
-          {/* End Header */}
           <main id="main" data-aos="fade-in">
             {/* ======= Breadcrumbs ======= */}
             <div className="breadcrumbs">
@@ -184,28 +164,7 @@ class ProfilePage extends React.Component{
                 </div>
               </div>
             </div>
-          </main>{/* End #main */}
-          {/* ======= Footer ======= */}
-          <footer id="footer">
-            <div className="container d-md-flex py-4">
-              <div className="me-md-auto text-center text-md-start">
-                <div className="copyright">
-                  © Copyright <strong><span>Nandi</span></strong>. All Rights Reserved
-                </div>
-                <div className="credits">
-                  Designed by <a href="https://RVCE.com/">RVCE</a>
-                </div>
-              </div>
-              <div className="social-links text-center text-md-right pt-3 pt-md-0">
-                <a href="#" className="twitter"><i className="bx bxl-twitter" /></a>
-                <a href="#" className="facebook"><i className="bx bxl-facebook" /></a>
-                <a href="#" className="instagram"><i className="bx bxl-instagram" /></a>
-                <a href="#" className="google-plus"><i className="bx bxl-skype" /></a>
-                <a href="#" className="linkedin"><i className="bx bxl-linkedin" /></a>
-              </div>
-            </div>
-          </footer>{/* End Footer */}
-          
+          </main>
         </div>
       );
     }

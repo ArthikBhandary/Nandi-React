@@ -45,17 +45,12 @@ export default class Header extends React.Component {
                             Quiz
                         </Link>
                     </li>
-                    <li>
-                        <Link to={"/trainee/profile"} >
-                            Profile
-                        </Link>
-                    </li>
                 </ul>
                 <i className="bi bi-list mobile-nav-toggle"/>
             </nav>
-            <a href="profile.html" className="get-profile-btn">
+            <Link to={"/trainee/profile"} className="get-profile-btn">
                 My Profile
-            </a>
+            </Link>
         </div>
     </header>);
     }
