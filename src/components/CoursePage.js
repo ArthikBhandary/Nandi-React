@@ -1,5 +1,6 @@
 import React from "react";
-import Course from "../database/Course";
+import CourseFS from "../database/Course";
+import {Link, useHistory} from "react-router-dom"
 import AOS from 'aos';
 import "../assets/vendor/animate.css/animate.min.css";
 import "../assets/vendor/bootstrap/css/bootstrap.min.css";
@@ -11,14 +12,14 @@ import "../assets/css/style.css";
 
 class CourseDOM extends React.Component {
     render() {
-        return (<div className="col-lg-4 col-md-6 d-flex align-items-stretch" key={this.props.val.id}>
+        return (<div className="col-lg-4 col-md-6 d-flex align-items-stretch">
             <div className="course-item">
                 <img src={this.props.val.image_url} className="img-fluid" alt="..."/>
                 <div className="course-content">
                     <h3>
-                        <a href="">
+                        <Link to={`/trainee/courses/${this.props.doc_id}`}>
                             {this.props.val.title}
-                        </a>
+                        </Link>
                     </h3>
                     <p>{this.props.val.description}
                     </p>
@@ -43,11 +44,10 @@ export default class CoursePage extends React.Component {
 
     async renderCourseList() {
         try {
-            const course = new Course;
-            const courseSnap = await course.getCourseList();
+            const courseSnap = await CourseFS.getCourseList();
             const courses = [];
             courseSnap.forEach((doc) => courses.push(
-                <CourseDOM val={doc.data()} key={doc.id}/>
+                <CourseDOM val={doc.data()} key={doc.id} doc_id={doc.id} />
             ));
             this.setState({courses: courses});
         } catch (err) {
