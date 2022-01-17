@@ -1,6 +1,5 @@
 import React, { useRef, useState } from "react"
 import { Form, Button, Card, Alert } from "react-bootstrap"
-import { useAuth } from "../contexts/AuthContext"
 import { Link, useHistory } from "react-router-dom"
 
 export default function RedirectLogin() {
@@ -20,12 +19,10 @@ export default function RedirectLogin() {
       switch (code) {
           case "TR":
               return "/login_trainee";
-              break;
           case "AD":
               return "/login_admin";
-              break;
           default:
-              throw "Invalid Id";
+              return "/login_trainee";
       }
   }
 

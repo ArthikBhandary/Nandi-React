@@ -1,14 +1,14 @@
 import React from "react"
 import ReactDOM from "react-dom"
-import App from "./components/App"
-import { AuthProvider } from "./contexts/AuthContext"
+import App from "./components/App.js"
+import { AuthProvider } from "./contexts/AuthContext.js"
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
-import HomePage from "./components/HomePage"
-import  { PrivateRoute, TraineePrivateRoute } from "./components/PrivateRoute"
+import HomePage from "./components/HomePage.js"
+import  { PrivateRoute, TraineePrivateRoute } from "./components/PrivateRoute.js"
 
 
 import "bootstrap/dist/css/bootstrap.min.css"
-import "./custom.scss"
+// import "./custom.scss"
 import './assets/Toyota-Display-Regular.ttf';
 
 const routes = (

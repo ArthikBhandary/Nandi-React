@@ -1,13 +1,13 @@
 import React from 'react';
-import Home from './Home';
-import Header from './Header';
-import Footer from './Footer';
-import AboutUs from './AboutUs';
-import QuizPage from './Quiz';
-import ProfilePage from './Profile';
-import CoursePage from './CoursePage';
-import CourseDetailsPage from './CourseDetails';
-import { AuthProvider, useAuth } from "../contexts/AuthContext"
+import Home from './Home.js';
+import Header from './Header.js';
+import Footer from './Footer.js';
+import AboutUs from './AboutUs.js';
+import QuizPage from './Quiz.js';
+import ProfilePage from './Profile.js';
+import CoursePage from './CoursePage.js';
+import ModulePage from "./ModulePage.js";
+import { AuthProvider, useAuth } from "../contexts/AuthContext.js"
 import { BrowserRouter as Router, Switch, Route, useRouteMatch } from "react-router-dom"
 
 export default function HomePage() {
@@ -19,8 +19,8 @@ export default function HomePage() {
             <Route path="/trainee/aboutus" component={AboutUs}/>
             <Route path="/trainee/home" component={Home}/>
             <Route exact path="/trainee/courses" component={ CoursePage }/>
-            <Route exact path="/trainee/courses/:courseId" component={ CourseDetailsPage } />
-            <Route path="/trainee/quiz" component={ QuizPage }/>
+            <Route exact path="/trainee/modules/:moduleID" component={ ModulePage } />
+            <Route path="/trainee/quiz/:moduleID" component={ QuizPage }/>
             <Route path="/trainee/profile" component={ ProfilePage }/>
             <Route path="/" component={Home}/>
         </Switch>

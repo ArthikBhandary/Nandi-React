@@ -1,8 +1,8 @@
 import React from "react";
 import { ref, listAll, getDownloadURL } from "firebase/storage";
-import { storage } from "../firebase";
+import { storage } from "../firebase.js";
 import AOS from 'aos';
-import main_func from "../assets/js/main";
+import main_func from "../assets/js/main.js";
 
 import "../assets/vendor/aos/aos.css";
 import "../assets/vendor/animate.css/animate.min.css";
@@ -34,10 +34,11 @@ class AboutUs extends React.Component {
             slideIndex: 0,
             slides: [],
         }
+        this.slideInterval = setInterval(()=>{});
     }
     componentDidMount() {
         this.getSlideImages();
-        this.showSlides();
+        this.slideInterval = setInterval(() => this.showSlides(), 6000); // Change image every 6 seconds
         main_func();
     }
 
@@ -67,7 +68,6 @@ class AboutUs extends React.Component {
     }
 
     showSlides() {
-
         let slides = document.getElementsByClassName("mySlides-n");
         if(slides.length < 1){
           setTimeout(() => this.showSlides(), 4000);
@@ -83,11 +83,11 @@ class AboutUs extends React.Component {
         }
         slides[slideIndex - 1].style.display = "block";
         this.setState({slideIndex:slideIndex})
-        setTimeout(() => this.showSlides(), 4000); // Change image every 8 seconds
         // Arrow function to preserve this
     }
 
     plusSlides(position) {
+        clearInterval(this.slideInterval)
         let slideIndex = this.state.slideIndex;
         slideIndex += position;
         let slides = document.getElementsByClassName("mySlides-n");
@@ -101,6 +101,7 @@ class AboutUs extends React.Component {
         }
         slides[slideIndex - 1].style.display = "block";
         this.setState({slideIndex:slideIndex})
+        this.slideInterval = setInterval(() => this.showSlides(), 6000); // Change image every 6 seconds
 
     }
 

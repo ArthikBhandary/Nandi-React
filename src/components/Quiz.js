@@ -1,8 +1,4 @@
 import React from "react";
-
-import AOS from 'aos';
-import main_func from "../assets/js/main";
-
 import "../assets/vendor/aos/aos.css";
 import "../assets/vendor/animate.css/animate.min.css";
 import "../assets/vendor/bootstrap/css/bootstrap.min.css";
@@ -17,7 +13,7 @@ class QuizPage extends React.Component {
 render(){
     return(
         <div>
-                <main id="main" data-aos="fade-in">
+                <main id="main">
                     {/* ======= Breadcrumbs ======= */}
                     <div className="breadcrumbs">
                         <div className="container">

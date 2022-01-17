@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from 'react-router-dom'
 import logoImage from "../assets/img/Logo.jpg"
-import main_func from "../assets/js/main";
+import main_func from "../assets/js/main.js";
 import "../assets/vendor/animate.css/animate.min.css";
 import "../assets/vendor/bootstrap/css/bootstrap.min.css";
 import "../assets/vendor/bootstrap-icons/bootstrap-icons.css";
@@ -19,9 +19,9 @@ export default class Header extends React.Component {
         <div className="container d-flex align-items-center">
             <h1 className="logo me-auto">
                 <img src={ logoImage } alt="alt" className="img-fluid"/>
-                <a href="index.html">
+                <Link to={"/trainee/home"}>
                     NANDI TOYOTA
-                </a>
+                </Link>
             </h1>
             <nav id="navbar" className="navbar order-last order-lg-0">
                 <ul>
@@ -40,11 +40,7 @@ export default class Header extends React.Component {
                             Courses
                         </Link>
                     </li>
-                    <li>
-                        <Link to={"/trainee/quiz"} >
-                            Quiz
-                        </Link>
-                    </li>
+
                 </ul>
                 <i className="bi bi-list mobile-nav-toggle"/>
             </nav>

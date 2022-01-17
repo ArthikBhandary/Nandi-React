@@ -5,25 +5,21 @@ import {
   getDoc,
   doc,
 } from "firebase/firestore";
+import CourseFS from "../database/Course.js";
+export default class ModuleFS {
 
-export default class CourseFS {
-
-  static async getCourseReference(userID) {
-    console.log(userID);
-    const docRef = await doc(db, "Users", userID);
-    console.log(docRef)
-    const User = await getDoc(docRef);
-    console.log(User);
-    const userData = User.data();
-    const path = userData.moduleRef;
-    const moduleCollectionRef = await getDoc(path);
-    return moduleCollectionRef;
+  static async getModuleRef(moduleId, userId){
+    const courseRef = await CourseFS.getCourseReference(userId);
+    // console.log(courseRef);
+    const path = courseRef.ref.path;
+    const moduleRef = await doc(db, path + "/Modules/", moduleId);
+    return moduleRef;
   }
-
-  static async getModuleList(moduleCollectionRef) {
-    const path = moduleCollectionRef.ref.path;
-    const moduleSnapList = await getDocs(collection(db, path, "Modules"));
-    return moduleSnapList;
+  static async getSectionList(moduleRef) {
+    const moduleDoc = await getDoc(moduleRef)
+    const path = moduleDoc.ref.path;
+    const sectionSnapList = await getDocs(collection(db, path, "Sections"));
+    return sectionSnapList;
   }
 
   // static async getCourse(courseId) {

@@ -1,8 +1,7 @@
 import React from "react";
 
 import AOS from 'aos';
-import main_func from "../assets/js/main";
-import { Link } from 'react-router-dom'
+import main_func from "../assets/js/main.js";
 
 import "../assets/vendor/aos/aos.css";
 import "../assets/vendor/animate.css/animate.min.css";

@@ -1,5 +1,4 @@
 import React from "react";
-import main_func from "../assets/js/main";
 
 class Footer extends React.Component {
     componentDidMount(){
