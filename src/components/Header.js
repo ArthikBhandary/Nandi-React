@@ -11,9 +11,20 @@ import "../assets/vendor/swiper/swiper-bundle.min.css";
 import "../assets/css/style.css";
 
 export default class Header extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            mobileNavbarDisplay : false
+        }
+    }
+
     componentDidMount(){
         main_func();
     }
+    navBarToggle(){
+        this.setState({mobileNavbarDisplay : !this.state.mobileNavbarDisplay});
+    }
+
     render(){
     return (<header id="header" className="fixed-top">
         <div className="container d-flex align-items-center">
@@ -23,7 +34,7 @@ export default class Header extends React.Component {
                     NANDI TOYOTA
                 </Link>
             </h1>
-            <nav id="navbar" className="navbar order-last order-lg-0">
+            <nav id="navbar" className= { "navbar order-last order-lg-0 " + (this.state.mobileNavbarDisplay ? " bi-list bi-x navbar-mobile " : " ") } >
                 <ul>
                     <li>
                         <Link to={"/trainee/home"} className="active">
@@ -42,7 +53,7 @@ export default class Header extends React.Component {
                     </li>
 
                 </ul>
-                <i className="bi bi-list mobile-nav-toggle"/>
+                <i className="bi bi-list mobile-nav-toggle" onClick={ this.navBarToggle.bind(this) }/>
             </nav>
             <Link to={"/trainee/profile"} className="get-profile-btn">
                 My Profile

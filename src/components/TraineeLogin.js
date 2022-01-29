@@ -1,14 +1,14 @@
 import React, {useRef, useState} from "react"
 import {Form, Button, Card, Alert} from "react-bootstrap"
 import {useAuth} from "../contexts/AuthContext.js"
-import {Link, useHistory} from "react-router-dom"
+import {Link, useNavigate} from "react-router-dom"
 
 export default function TraineeLogin(props) {
     const passwordRef = useRef()
     const [error, setError] = useState("")
     const {login, loginGoogle} = useAuth()
     const [loading, setLoading] = useState(false)
-    const history = useHistory()
+    const navigate = useNavigate()
 
     async function handleSubmit(e) {
         e.preventDefault()
@@ -21,7 +21,7 @@ export default function TraineeLogin(props) {
                 setLoading(false)
             })
             console.log("Pushing")
-            history.push("/trainee/home")
+            navigate("/trainee/home")
         } catch  {
             setError("Failed to log in")
             setLoading(false)

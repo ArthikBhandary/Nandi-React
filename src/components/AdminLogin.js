@@ -1,14 +1,15 @@
 import React, {useRef, useState} from "react"
 import {Form, Button, Card, Alert} from "react-bootstrap"
 import {useAuth} from "../contexts/AuthContext.js"
-import {Link, useHistory} from "react-router-dom"
+import {Link, useNavigate, useLocation} from "react-router-dom"
 
-export default function AdminLogin(props) {
+export const AdminLogin = (props) => {
     const passwordRef = useRef()
     const [error, setError] = useState("")
-    const {login, loginGoogle} = useAuth()
+    const {login} = useAuth()
     const [loading, setLoading] = useState(false)
-    const history = useHistory()
+    const location = useLocation()
+    const navigate = useNavigate()
 
     async function handleSubmit(e) {
         e.preventDefault()
@@ -16,18 +17,17 @@ export default function AdminLogin(props) {
         try {
             setError("")
             setLoading(true)
-            await login(props.location.state.userId, passwordRef.current.value).then((res) => {
+            await login(location.state.userId, passwordRef.current.value).then((res) => {
                 console.log(res.user)
                 setLoading(false)
             })
-            history.push("/trainee/home")
+            navigate("/trainee/home")
         } catch  {
             setError("Failed to log in")
             setLoading(false)
         }
 
     }
-
     return (
         <> < Card > <Card.Body>
             <h2 className="text-center mb-4">Admin Log In</h2>
@@ -35,7 +35,7 @@ export default function AdminLogin(props) {
             <Form onSubmit={handleSubmit}>
                 <Form.Group id="email">
                     <Form.Label>Email</Form.Label>
-                    <Form.Control type="email" value={props.location.state.userId} disabled={true}/>
+                    <Form.Control type="email" defaultValue={location.state.userId} disabled={true}/>
                 </Form.Group>
                 <Form.Group id="password">
                     <Form.Label>Password</Form.Label>

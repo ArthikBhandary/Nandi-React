@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react"
 import { Form, Button, Card, Alert } from "react-bootstrap"
-import { Link, useHistory } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 export default function RedirectLogin() {
   // const { currentUser, logout } = useAuth()
@@ -12,7 +12,7 @@ export default function RedirectLogin() {
   const passwordRef = useRef()
   const [error, setError] = useState("")
   const [loading, setLoading] = useState(false)
-  const history = useHistory()
+  const navigate = useNavigate()
 
   function getRedirectUrl(userId){
       let code = userId.toString().slice(0,2);
@@ -34,7 +34,12 @@ export default function RedirectLogin() {
       let userId = userIdRef.current.value
       let nextUrl = getRedirectUrl(userId);
       console.log(nextUrl, userId)
-      history.push(nextUrl, {userId:userId});
+      navigate(nextUrl,
+          {state : {
+              userId:userId
+            }
+          }
+      );
   } catch(err) {
       setError(err)
       setLoading(false)

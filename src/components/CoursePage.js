@@ -1,6 +1,6 @@
 import React from "react";
 import CourseFS from "../database/Course.js";
-import {Link, useHistory} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {AuthContext} from "../contexts/AuthContext.js";
 import AOS from 'aos';
 import "../assets/vendor/animate.css/animate.min.css";

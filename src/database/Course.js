@@ -9,11 +9,8 @@ import {
 export default class CourseFS {
 
   static async getCourseReference(userID) {
-    console.log(userID);
     const docRef = await doc(db, "Users", userID);
-    console.log(docRef)
     const User = await getDoc(docRef);
-    console.log(User);
     const userData = User.data();
     const path = userData.moduleRef;
     const moduleCollectionRef = await getDoc(path);

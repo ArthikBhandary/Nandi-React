@@ -8,22 +8,24 @@ import ProfilePage from './Profile.js';
 import CoursePage from './CoursePage.js';
 import ModulePage from "./ModulePage.js";
 import { AuthProvider, useAuth } from "../contexts/AuthContext.js"
-import { BrowserRouter as Router, Switch, Route, useRouteMatch } from "react-router-dom"
+import {BrowserRouter as Router, Routes, Route, useRouteMatch, useLocation} from "react-router-dom"
 
 export default function HomePage() {
   const { currentUser } = useAuth()
+    const location = useLocation()
+    console.log(location)
   console.log(currentUser)
     return (<div className="HomePage">
         <Header></Header>
-        <Switch>
-            <Route path="/trainee/aboutus" component={AboutUs}/>
-            <Route path="/trainee/home" component={Home}/>
-            <Route exact path="/trainee/courses" component={ CoursePage }/>
-            <Route exact path="/trainee/modules/:moduleID" component={ ModulePage } />
-            <Route path="/trainee/quiz/:moduleID" component={ QuizPage }/>
-            <Route path="/trainee/profile" component={ ProfilePage }/>
-            <Route path="/" component={Home}/>
-        </Switch>
+        <Routes>
+            <Route path="aboutus" element={<AboutUs />}/>
+            <Route path="home" element={<Home />}/>
+            <Route exact path="/courses" element={ <CoursePage /> }/>
+            <Route exact path="modules/:moduleID" element={ <ModulePage /> } />
+            <Route path="quiz/:moduleID" element={ <QuizPage />}/>
+            <Route path="profile" element={ <ProfilePage />}/>
+            {/*<Route path="*" element={<Home />}/>*/}
+        </Routes>
         <Footer></Footer>
     </div>)
 }
