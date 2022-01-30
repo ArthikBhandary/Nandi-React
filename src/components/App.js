@@ -1,14 +1,14 @@
-import React from "react"
-import Signup from "./Signup.js"
+import React, {Suspense} from "react";
+// import Signup from "./Signup.js"
 import Logo from "./Logo.js"
 import TraineeLogin from "./TraineeLogin.js"
 import { AdminLogin } from "./AdminLogin.js"
 import RedirectLogin from "./UserRedirect.js"
-import ForgotPassword from "./ForgotPassword.js"
+// import ForgotPassword from "./ForgotPassword.js"
 import { Container } from "react-bootstrap"
 import { AuthProvider } from "../contexts/AuthContext.js"
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
-
+import { Routes, Route } from "react-router-dom"
+import {LoadingSpinner} from "./LoadingComponent";
 function App() {
   return (
     <Container
@@ -22,14 +22,16 @@ function App() {
       <div className="d-none d-md-block w-100" style={{ maxWidth: "600px", }}><Logo/></div>
       <div className="w-100" style={{ maxWidth: "400px" }}>
             <AuthProvider>
+              <Suspense fallback={<LoadingSpinner></LoadingSpinner>}>
               <Routes>
-                <Route path="/signup" element={<Signup />} />
+                {/*<Route path="/signup" element={<Signup />} />*/}
                 <Route path="/login_trainee" element={<TraineeLogin />} />
                 <Route path="/trainee" element={<TraineeLogin />} />
                 <Route path="/login_admin" element={ <AdminLogin /> } />
-                <Route path="/forgot-password" element={<ForgotPassword />} />
+                {/*<Route path="/forgot-password" element={<ForgotPassword />} />*/}
                 <Route path="/" element={<RedirectLogin />} />
               </Routes>
+              </Suspense>
             </AuthProvider>
       </div>
     </Container>

@@ -17,12 +17,9 @@ const getUserProgress = async (userID) => {
 
 const setUserModuleProgress = async (courseRef, updatedCourseProgress, moduleID) => {
     return await runTransaction(db, async (transaction) => {
-        console.log("Transaction started");
-        console.log(courseRef);
+
         const courseDoc = await transaction.get(courseRef);
         let progress = courseDoc.data();
-        console.log(progress);
-        console.log("Here\n");
         const updateModuleProgress = updatedCourseProgress[moduleID]; 
         for(let key in updateModuleProgress){
             if(!(key in progress[moduleID])){

@@ -4,17 +4,13 @@ import {withRouter} from "../functions/withRouter";
 import AOS from 'aos';
 import ModuleFS from "../database/Module.js";
 import {AuthContext} from "../contexts/AuthContext.js";
-import { Player } from 'video-react';
 import PDFViewer from 'pdf-viewer-reactjs/dist/pdf-viewer-reactjs';
-import "../assets/vendor/bootstrap/css/bootstrap.min.css";
-import "../assets/vendor/bootstrap-icons/bootstrap-icons.css";
-import "../assets/vendor/boxicons/css/boxicons.min.css";
-import "../assets/css/style.css";
 import 'video-react/dist/video-react.css';
 import ReactPlayer from 'react-player'
 import 'bulma/css/bulma.css';
 import 'material-design-icons/iconfont/material-icons.css';
 import {getUserProgress, setUserModuleProgress} from "../database/User";
+import {Link} from "react-router-dom";
 
 class SectionDOM extends React.Component {
     static contextType = AuthContext;
@@ -24,7 +20,7 @@ class SectionDOM extends React.Component {
         this.section = this.props.val;
         this.doc_ref = this.props.doc_ref;
         this.start_at = this.props.start_at;
-        if(this.section.file_type == "pdf") {
+        if(this.section.file_type === "pdf") {
             this.start_at = this.props.start_at < 1 ? 1 : this.props.start_at;
         }
         this.updateOnce = true;
@@ -64,7 +60,9 @@ class SectionDOM extends React.Component {
                     controls={true}
                     ref={(player) => {
                         this.player = player;
-                        this.player.seekTo(this.start_at, "seconds");
+                        if(this.player) {
+                            this.player.seekTo(this.start_at, "seconds");
+                        }
                     }}
                     width={"100%"}
                     height={"500px"}
@@ -73,7 +71,9 @@ class SectionDOM extends React.Component {
                         this.props.onProgress(val.playedSeconds);
                     }}
                     onEnded={() => {
-                        this.props.onProgress(this.player.getDuration());
+                        if(this.player) {
+                            this.props.onProgress(this.player.getDuration());
+                        }
                     }}
                 />
             </div>
@@ -118,7 +118,6 @@ class SectionDOM extends React.Component {
     }
 
     renderPDFdom(page) {
-        const resetBtnDefaultClass = " button is-black is-marginless has-margin-left-5 has-margin-right-5 ";
         let fileUrl = this.section.file_url;
         // console.log(page, "PAGES INSIDE THE")
         return <PDFViewer
@@ -152,7 +151,9 @@ class ModulePage extends React.Component {
         super(props);
         AOS.init();
         this.moduleID = this.props.params.moduleID
-        this.state = {};
+        this.state = {
+            hasGivenQuiz : true,
+        };
         this.hasProgressed = false;
     }
 
@@ -164,6 +165,12 @@ class ModulePage extends React.Component {
         progressPromise.then((progressInfo) => {
             this.progress = progressInfo.data;
             console.log(this.progress);
+            if(! this.progress["quiz"][this.moduleID]){
+                this.setState({
+                    hasGivenQuiz : false,
+                })
+            }
+            this.progress.quiz = {};
             this.courseProgressRef = progressInfo.ref;
             this.updateProgressInterval = setInterval(() => {
                 this.uploadProgress()
@@ -267,6 +274,11 @@ class ModulePage extends React.Component {
 
                 // <ModuleTile val={title:"TTTT"}/>
             }
+            <br/><br/>
+
+            {!this.state.hasGivenQuiz && <Link to={`/trainee/quiz/${this.moduleID}`}>
+                Give Quiz
+            </Link>}
         </main>);
     }
 }

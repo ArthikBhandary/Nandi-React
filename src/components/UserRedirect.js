@@ -1,7 +1,6 @@
 import React, { useRef, useState } from "react"
 import { Form, Button, Card, Alert } from "react-bootstrap"
-import { Link, useNavigate } from "react-router-dom"
-
+import { useNavigate } from "react-router-dom"
 export default function RedirectLogin() {
   // const { currentUser, logout } = useAuth()
   // if( currentUser ){
@@ -9,7 +8,6 @@ export default function RedirectLogin() {
   //   logout();
   // }
   const userIdRef = useRef()
-  const passwordRef = useRef()
   const [error, setError] = useState("")
   const [loading, setLoading] = useState(false)
   const navigate = useNavigate()

@@ -86,5 +86,4 @@ export const getSection = async (sectionRef) => {
      ref : sectionRef,
    }
    return section;
-
 }

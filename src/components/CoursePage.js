@@ -3,13 +3,6 @@ import CourseFS from "../database/Course.js";
 import {Link, useNavigate} from "react-router-dom";
 import {AuthContext} from "../contexts/AuthContext.js";
 import AOS from 'aos';
-import "../assets/vendor/animate.css/animate.min.css";
-import "../assets/vendor/bootstrap/css/bootstrap.min.css";
-import "../assets/vendor/bootstrap-icons/bootstrap-icons.css";
-import "../assets/vendor/boxicons/css/boxicons.min.css";
-import "../assets/vendor/remixicon/remixicon.css";
-import "../assets/vendor/swiper/swiper-bundle.min.css";
-import "../assets/css/style.css";
 
 class ModuleTile extends React.Component {
   render() {

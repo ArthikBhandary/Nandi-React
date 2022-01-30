@@ -2,13 +2,6 @@ import React from "react";
 import { Link } from 'react-router-dom'
 import logoImage from "../assets/img/Logo.jpg"
 import main_func from "../assets/js/main.js";
-import "../assets/vendor/animate.css/animate.min.css";
-import "../assets/vendor/bootstrap/css/bootstrap.min.css";
-import "../assets/vendor/bootstrap-icons/bootstrap-icons.css";
-import "../assets/vendor/boxicons/css/boxicons.min.css";
-import "../assets/vendor/remixicon/remixicon.css";
-import "../assets/vendor/swiper/swiper-bundle.min.css";
-import "../assets/css/style.css";
 
 export default class Header extends React.Component {
     constructor(props) {
