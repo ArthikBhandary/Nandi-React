@@ -41,4 +41,33 @@ const getUserData = async (userId) => {
     return User.data();
 }
 
+async function getQuizMarks(userID) {
+    const userData = await getUserData(userID);
+    const course = await getDoc(userData.currentCourseProgress);
+    const courseData = course.data();
+    return courseData["quiz"];
+}
+
+async function setQuizProgress (userId, moduleID, marks) {
+    const userData = await getUserData(userId);
+    const courseRef = userData.currentCourseProgress;
+    return await runTransaction(db, async (transaction) => {
+        const courseDoc = await transaction.get(courseRef);
+        let progress = courseDoc.data();
+        const quizData = progress["quiz"];
+        if(quizData[moduleID]){
+            return {
+                success : false,
+            }
+        }
+        progress["quiz"][moduleID] = marks;
+        transaction.update(courseRef, progress);
+        console.log(progress);
+        return {
+            success : true,
+            marks : marks,
+        };
+    })
+}
+
 export { getUserProgress, getUserData, setUserModuleProgress };

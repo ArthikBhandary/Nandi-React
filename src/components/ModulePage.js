@@ -276,9 +276,9 @@ class ModulePage extends React.Component {
             }
             <br/><br/>
 
-            {!this.state.hasGivenQuiz && <Link to={`/trainee/quiz/${this.moduleID}`}>
-                Give Quiz
-            </Link>}
+            <Link to={`/trainee/quiz/${this.moduleID}`}>
+                {this.state.hasGivenQuiz ? "Quiz Status" : "Give Quiz"}
+            </Link>
         </main>);
     }
 }
