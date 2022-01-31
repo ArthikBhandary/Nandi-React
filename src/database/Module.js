@@ -84,6 +84,7 @@ export const getSection = async (sectionRef) => {
      file_type : sectionData.file_type,
      file_url : await getFileUrlFromPath( sectionData.file_path ),
      ref : sectionRef,
+     total: sectionData.total,
    }
    return section;
 }

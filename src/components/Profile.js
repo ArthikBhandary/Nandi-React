@@ -90,6 +90,7 @@ class ProfilePage extends React.Component {
 
             counter += 1;
             temp += (sectionProgress * 100) / section.total;
+            console.log(section);
           });
           if (i === 1) this.setState({ module1: temp / counter });
           if (i === 2) this.setState({ module2: temp / counter });

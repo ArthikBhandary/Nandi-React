@@ -124,16 +124,16 @@ class SectionDOM extends React.Component {
             document={{
                 url: fileUrl
             }}
-            getMaxPageCount={()=>{
-                this.updatePages();
-            }
-            }
+            // getMaxPageCount={()=>{
+            //     this.updatePages();
+            // }
+            // }
             onNextBtnClick={(val) => {
                 this.props.onProgress(val);
             }}
             hideNavbar={false}
             externalInput={false}
-            page={page}
+            page={this.start_at}
             // canvasCss = { this.canvasClass }
             minScale={0.5   }
             scaleStep={0.25}
@@ -231,6 +231,7 @@ class ModulePage extends React.Component {
                             if( !(section.id in moduleProgress)) {
                                 this.progress[this.moduleID][section.id] = 0;
                             }
+
                             sectionDOMList.push(
                                 <SectionDOM
                                     val={section}
