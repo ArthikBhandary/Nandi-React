@@ -77,7 +77,7 @@ class QuizPage extends React.Component {
         for (let key in quiz.option) {
             row.push(
                 <label className="options" key={key}> {ind} . {quiz.option[key]}
-                    <input type="radio" name="radio" value={quiz.option[key]} required={true} onClick={(e) => {
+                    <input type="radio" name={ "radio" + quiz.id} value={quiz.option[key]} required={true} onClick={(e) => {
                         let answers = this.state.answers;
                         answers[quiz.id]["chosen"] = quiz.option[key];
                         this.setState((
